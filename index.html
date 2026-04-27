@@ -48,69 +48,6 @@
         overflow-x: hidden;
       }
 
-      /* Glassmorphism Navigation */
-      .glass-nav {
-        background: rgba(255, 255, 255, 0.6);
-        backdrop-filter: blur(25px) saturate(180%);
-        -webkit-backdrop-filter: blur(25px) saturate(180%);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        transition: all 0.4s ease;
-      }
-
-      .nav-up {
-        transform: translateY(-110%);
-      }
-
-      /* Smooth Progress Bar */
-      #scroll-progress {
-        background: linear-gradient(to right, #60a5fa, #2563eb);
-        box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
-      }
-
-      /* Smart Underline Animation */
-      .nav-link::after {
-        content: "";
-        position: absolute;
-        width: 0;
-        height: 2px;
-        bottom: -4px;
-        left: 50%;
-        background: #2563eb;
-        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-        transform: translateX(-50%);
-      }
-      .nav-link:hover::after,
-      .nav-link.active::after {
-        width: 100%;
-      }
-
-      /* Tilt & Glare Card */
-      .smart-card {
-        position: relative;
-        transition: all 0.4s ease;
-        transform-style: preserve-3d;
-      }
-
-      .smart-card:hover {
-        transform: translateY(-12px) scale(1.02);
-        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
-      }
-      .glare {
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(
-          circle at var(--x) var(--y),
-          rgba(255, 255, 255, 0.3) 0%,
-          transparent 80%
-        );
-        pointer-events: none;
-        opacity: 0;
-        transition: opacity 0.3s;
-      }
-      .smart-card:hover .glare {
-        opacity: 1;
-      }
-
       /* Custom Shapes */
       .hero-clip {
         clip-path: ellipse(150% 100% at 50% 0%);
@@ -155,68 +92,127 @@
       #testimonial-slider > div:hover {
         transform: scale(1.03);
       }
+
+      /* Animation */
+      @keyframes rise {
+        0% {
+          transform: translateY(0) rotate(0deg);
+          opacity: 0;
+        }
+        10% {
+          opacity: 1;
+        }
+        90% {
+          opacity: 0.5;
+        }
+        100% {
+          transform: translateY(-110vh) rotate(360deg);
+          opacity: 0;
+        }
+      }
+
+      .bubble-container {
+        position: fixed;
+        inset: 0;
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      .bubble {
+        position: absolute;
+        bottom: -120px;
+        background: radial-gradient(
+          circle at 30% 30%,
+          rgba(96, 165, 250, 0.35),
+          rgba(37, 99, 235, 0.08)
+        );
+        border-radius: 50%;
+        animation: rise linear infinite;
+        opacity: 0;
+      }
+
+      @keyframes rise {
+        0% {
+          transform: translateY(0) scale(0.6);
+          opacity: 0;
+        }
+        10% {
+          opacity: 0.8;
+        }
+        100% {
+          transform: translateY(-120vh) scale(1.2);
+          opacity: 0;
+        }
+      }
     </style>
   </head>
-  <body class="bg-[#f8fafc] text-slate-900">
+  <body class="relative z-10 bg-[#f8fafc] text-slate-900">
     <!-- Section: Navigation -->
+
     <nav
-  id="navbar"
-  class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-6xl h-20 flex items-center justify-between px-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl shadow-lg transition-all duration-300"
->
-  <!-- Logo -->
-  <a href="#home" class="flex items-center gap-3 group">
-    <div
-      class="bg-blue-600 p-2.5 rounded-2xl shadow-md group-hover:rotate-12 transition duration-500"
+      id="navbar"
+      class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-6xl h-20 flex items-center justify-between px-6 bg-white/90 backdrop-blur-xl border border-slate-200 rounded-3xl shadow-md transition-all duration-300"
     >
-      <i class="fas fa-soap text-white text-lg"></i>
-    </div>
-
-    <div class="leading-tight">
-      <div class="text-lg font-black tracking-tight text-slate-900">
-        BUBBLES
+      <!-- progress bar -->
+      <div
+        id="scroll-progress-container"
+        class="fixed top-[88px] left-1/2 -translate-x-1/2 w-[92%] max-w-6xl h-[4px] bg-slate-200/50 rounded-full z-[99] overflow-hidden"
+      >
+        <div
+          id="scroll-progress"
+          class="h-full w-0 rounded-full bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 shadow-[0_0_12px_rgba(59,130,246,0.8)] transition-all duration-150"
+        ></div>
       </div>
-      <div class="text-[10px] tracking-[0.3em] text-blue-500 font-bold">
-        LAUNDROMAT
+      <!-- Logo -->
+      <a href="#home" class="flex items-center gap-3 group">
+        <div
+          class="bg-blue-600 p-2.5 rounded-2xl shadow-md transition-transform duration-700 ease-[cubic-bezier(0.4,0,0.2,1)] hover:rotate-[180deg] hover:scale-110"
+        >
+          <i class="fas fa-soap text-white text-lg"></i>
+        </div>
+
+        <div class="leading-tight">
+          <div class="text-lg font-black tracking-tight text-slate-900">
+            BUBBLES
+          </div>
+          <div class="text-[10px] tracking-[0.3em] text-blue-500 font-bold">
+            LAUNDROMAT
+          </div>
+        </div>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div
+        class="hidden lg:flex items-center gap-8 text-xs uppercase font-bold tracking-widest text-slate-700"
+      >
+        <a href="#home" class="hover:text-blue-600 transition">Home</a>
+        <a href="#services" class="hover:text-blue-600 transition">Services</a>
+        <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+        <a href="#about" class="hover:text-blue-600 transition">About</a>
+        <a href="#faq" class="hover:text-blue-600 transition">FAQ</a>
+        <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+
+        <!-- CTA -->
+        <a
+          href="tel:+14057488990"
+          class="px-5 py-2 rounded-xl font-bold border border-slate-200 hover:bg-blue-600 hover:text-white transition"
+        >
+          Call Now
+        </a>
+
+        <a
+          href="#location"
+          class="bg-blue-600 text-white px-5 py-2 rounded-xl hover:scale-105 transition shadow-md"
+        >
+          Find Us
+        </a>
       </div>
-    </div>
-  </a>
 
-  <!-- Desktop Menu -->
-  <div
-    class="hidden lg:flex items-center gap-8 text-xs uppercase font-bold tracking-widest text-slate-700"
-  >
-    <a href="#home" class="hover:text-blue-600 transition">Home</a>
-    <a href="#services" class="hover:text-blue-600 transition">Services</a>
-    <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
-    <a href="#about" class="hover:text-blue-600 transition">About</a>
-    <a href="#faq" class="hover:text-blue-600 transition">FAQ</a>
-    <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
-
-    <!-- CTA -->
-    <a
-      href="tel:+14057488990"
-      class="px-5 py-2 rounded-xl font-bold border border-slate-200 hover:bg-blue-600 hover:text-white transition"
-    >
-      Call Now
-    </a>
-
-    <a
-      href="#location"
-      class="bg-blue-600 text-white px-5 py-2 rounded-xl hover:scale-105 transition shadow-md"
-    >
-      Find Us
-    </a>
-  </div>
-
-  <!-- Mobile Button -->
-  <button
-    id="mobile-toggle"
-    class="lg:hidden text-2xl text-slate-900"
-  >
-    <i class="fas fa-bars"></i>
-  </button>
-</nav>
-
+      <!-- Mobile Button -->
+      <button id="mobile-toggle" class="lg:hidden text-2xl text-slate-900">
+        <i class="fas fa-bars"></i>
+      </button>
+    </nav>
 
     <!-- Scroll Progress Bar -->
     <div
@@ -250,7 +246,7 @@
       <!-- Background Image -->
       <div class="absolute inset-0 z-0">
         <img
-          src="img/bg.png"
+          src="img/hero-bg.png"
           alt="Hero Background"
           class="w-full h-full object-cover scale-110 brightness-75 contrast-110"
         />
@@ -405,6 +401,8 @@
 
     <!-- Section: Services -->
     <section id="services" class="py-40 bg-[#f8fafc]">
+      <div class="bubble-container"></div>
+      
       <div class="max-w-7xl mx-auto px-6">
         <div
           class="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8"

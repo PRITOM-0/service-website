@@ -23,35 +23,40 @@ document.addEventListener("DOMContentLoaded", () => {
   reveals.forEach((el) => revealObserver.observe(el));
 
   // 2. Smart Navbar Logic (Hide/Show + Active Link)
-  // 👉 PUT NAVBAR JS HERE
+
   const nav = document.getElementById("navbar");
-  const progressBar = document.getElementById("scroll-progress");
+  const progress = document.getElementById("scroll-progress");
 
   window.addEventListener("scroll", () => {
     const scrollY = window.scrollY;
-
-    // progress bar
     const height =
       document.documentElement.scrollHeight -
       document.documentElement.clientHeight;
 
-    progressBar.style.width = (scrollY / height) * 100 + "%";
+    const percent = (scrollY / height) * 100;
 
-    // navbar style change
-    if (scrollY > 50) {
-      nav.classList.add("shadow-xl", "backdrop-blur-2xl", "bg-white/80");
-      nav.classList.remove("py-5");
-      nav.classList.add("py-3");
+    // ✅ progress bar fill
+    progress.style.width = percent + "%";
+
+    // ✨ glow intensity effect
+    progress.style.boxShadow =
+      scrollY > 50
+        ? "0 0 18px rgba(59,130,246,0.9)"
+        : "0 0 8px rgba(59,130,246,0.4)";
+
+    // 🌟 navbar premium shrink effect (NO height change, only scale feel)
+    if (scrollY > 60) {
+      nav.classList.add("shadow-2xl", "bg-white");
+      nav.style.transform = "translateX(-50%) scale(0.98)";
     } else {
-      nav.classList.remove("shadow-xl", "backdrop-blur-2xl", "bg-white/80");
-      nav.classList.remove("py-3");
-      nav.classList.add("py-5");
+      nav.classList.remove("shadow-2xl");
+      nav.style.transform = "translateX(-50%) scale(1)";
     }
   });
 
   // 👉 ACTIVE LINK SCROLL SPY
   const sections = document.querySelectorAll("section, header");
-  const navLinks = document.querySelectorAll(".nav-link")
+  const navLinks = document.querySelectorAll(".nav-link");
 
   // 3. Counter-Up Animation
   const counters = document.querySelectorAll(".counter");
@@ -62,9 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
           const target = +entry.target.getAttribute("data-target");
           const speed = target / 50; // Adjust for duration
           const updateCount = () => {
-            const count = +entry.target.innerText
-              .replace("+", "")
-              .replace(",", "");
+            const count =
+              parseInt(entry.target.getAttribute("data-target")) || 0;
+
             if (count < target) {
               entry.target.innerText =
                 Math.ceil(count + speed) + (target > 1000 ? "+" : "+");
@@ -341,4 +346,35 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("distance-text").innerText =
       "Geolocation not supported";
   }
+
+// 
+// =========================
+// BUBBLE BACKGROUND SYSTEM
+// =========================
+
+const bubbleContainer = document.querySelector(".bubble-container");
+
+function createBubble() {
+  const bubble = document.createElement("span");
+  bubble.classList.add("bubble");
+
+  const size = Math.random() * 60 + 20;
+  bubble.style.width = size + "px";
+  bubble.style.height = size + "px";
+
+  bubble.style.left = Math.random() * 100 + "vw";
+
+  bubble.style.animationDuration = Math.random() * 10 + 8 + "s";
+  bubble.style.animationDelay = Math.random() * 5 + "s";
+
+  bubbleContainer.appendChild(bubble);
+
+  setTimeout(() => {
+    bubble.remove();
+  }, 20000);
+}
+
+setInterval(createBubble, 300);
+
+  
 });
