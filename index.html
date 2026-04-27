@@ -5,6 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bubbles Laundromat | Premium Fabric Care & Eco-Laundry OKC</title>
 
+    <!-- Favicon -->
+    <link rel="icon" href="img/logo.png" type="image/png" />
+
     <!-- Meta & SEO -->
     <meta
       name="description"
@@ -46,6 +49,7 @@
       body {
         font-family: "Plus Jakarta Sans", sans-serif;
         overflow-x: hidden;
+       
       }
 
       /* Custom Shapes */
@@ -146,7 +150,8 @@
       }
     </style>
   </head>
-  <body class="relative z-10 bg-[#f8fafc] text-slate-900">
+  <body class="relative z-10 text-slate-900">
+    <div class="bubble-container"></div>
     <!-- Section: Navigation -->
 
     <nav
@@ -399,11 +404,89 @@
       </div>
     </section>
 
+    <!-- Section: About -->
+    <section id="about" class="py-40 bg-white relative overflow-hidden" style="background-image: url('img/about-bg.jpg'); background-size: cover; background-position: center;">
+      <div
+        class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center"
+      >
+        <!-- Left Content -->
+        <div data-aos="fade-right">
+          <h2
+            class="text-primary font-black tracking-[0.3em] text-xs uppercase mb-4"
+          >
+            About Us
+          </h2>
+
+          <h3 class="text-5xl md:text-7xl font-black leading-tight mb-8">
+            Clean Clothes.<br />
+            <span class="text-primary">Clean Lifestyle.</span>
+          </h3>
+
+          <p class="text-slate-500 text-lg leading-relaxed mb-10">
+            At Bubbles Laundromat, we combine modern technology with
+            eco-friendly cleaning methods to give your clothes the best care
+            possible. From self-service to premium wash & fold, we make laundry
+            effortless and fast.
+          </p>
+
+          <div class="flex gap-6">
+            <a
+              href="#services"
+              class="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
+            >
+              Explore Services
+            </a>
+
+            <a
+              href="tel:+14057488990"
+              class="border border-primary text-primary px-8 py-4 rounded-2xl font-bold hover:bg-primary hover:text-white transition"
+            >
+              Call Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Visual Card -->
+        <div class="relative" data-aos="fade-left">
+          <div class="grid grid-cols-2 gap-6">
+            <div
+              class="bg-blue-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">15+</h4>
+              <p class="text-slate-600 font-medium mt-2">Years Experience</p>
+            </div>
+
+            <div
+              class="bg-slate-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">24h</h4>
+              <p class="text-slate-600 font-medium mt-2">Fast Delivery</p>
+            </div>
+
+            <div
+              class="bg-slate-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">99%</h4>
+              <p class="text-slate-600 font-medium mt-2">Stain Removal</p>
+            </div>
+
+            <div
+              class="bg-blue-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">Eco</h4>
+              <p class="text-slate-600 font-medium mt-2">Friendly Process</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- Section: Services -->
-    <section id="services" class="py-40 bg-[#f8fafc]">
-      <div class="bubble-container"></div>
+    <section id="services" class="py-40 bg-[#f8fafc] relative" style="background-image: url('img/service-bg.jpg'); background-size: cover; background-position: center;">
+      <div class="absolute inset-0 bg-white/85"></div>
       
-      <div class="max-w-7xl mx-auto px-6">
+      
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div
           class="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8"
         >
@@ -602,8 +685,9 @@
     <!-- ... [Additional Sections 4-13 follow enriched pattern] ... -->
 
     <!-- Section: Pricing -->
-    <section id="pricing" class="py-40 bg-slate-900 text-white overflow-hidden">
-      <div class="max-w-7xl mx-auto px-6 relative">
+    <section id="pricing" class="py-40 bg-slate-900 text-white overflow-hidden relative" style="background-image: url('img/pricing-bg.png'); background-size: cover; background-position: center;">
+      <div class="absolute inset-0 bg-slate-900/85"></div>
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
         <div
           class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"
         ></div>
@@ -707,84 +791,9 @@
         </div>
       </div>
     </section>
-    <!-- Section: About -->
-    <section id="about" class="py-40 bg-white relative overflow-hidden">
-      <div
-        class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center"
-      >
-        <!-- Left Content -->
-        <div data-aos="fade-right">
-          <h2
-            class="text-primary font-black tracking-[0.3em] text-xs uppercase mb-4"
-          >
-            About Us
-          </h2>
-
-          <h3 class="text-5xl md:text-7xl font-black leading-tight mb-8">
-            Clean Clothes.<br />
-            <span class="text-primary">Clean Lifestyle.</span>
-          </h3>
-
-          <p class="text-slate-500 text-lg leading-relaxed mb-10">
-            At Bubbles Laundromat, we combine modern technology with
-            eco-friendly cleaning methods to give your clothes the best care
-            possible. From self-service to premium wash & fold, we make laundry
-            effortless and fast.
-          </p>
-
-          <div class="flex gap-6">
-            <a
-              href="#services"
-              class="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
-            >
-              Explore Services
-            </a>
-
-            <a
-              href="tel:+14057488990"
-              class="border border-primary text-primary px-8 py-4 rounded-2xl font-bold hover:bg-primary hover:text-white transition"
-            >
-              Call Now
-            </a>
-          </div>
-        </div>
-
-        <!-- Right Visual Card -->
-        <div class="relative" data-aos="fade-left">
-          <div class="grid grid-cols-2 gap-6">
-            <div
-              class="bg-blue-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
-            >
-              <h4 class="text-4xl font-black text-primary">15+</h4>
-              <p class="text-slate-600 font-medium mt-2">Years Experience</p>
-            </div>
-
-            <div
-              class="bg-slate-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
-            >
-              <h4 class="text-4xl font-black text-primary">24h</h4>
-              <p class="text-slate-600 font-medium mt-2">Fast Delivery</p>
-            </div>
-
-            <div
-              class="bg-slate-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
-            >
-              <h4 class="text-4xl font-black text-primary">99%</h4>
-              <p class="text-slate-600 font-medium mt-2">Stain Removal</p>
-            </div>
-
-            <div
-              class="bg-blue-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
-            >
-              <h4 class="text-4xl font-black text-primary">Eco</h4>
-              <p class="text-slate-600 font-medium mt-2">Friendly Process</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    
     <!-- Section: Contact -->
-    <section id="contact" class="py-40 bg-[#f8fafc] relative overflow-hidden">
+    <section id="contact" class="py-40 bg-[#f8fafc] relative overflow-hidden" style="background-image: url('img/call-bg.png'); background-size: cover; background-position: center;">
       <div
         class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center"
       >
@@ -886,9 +895,11 @@
 
     <!-- Section: Testimonials (3D Swipe Carousel) -->
     <section
-      class="py-32 bg-gradient-to-b from-blue-50 to-white overflow-hidden"
+      class="py-32 bg-gradient-to-b from-blue-50 to-white overflow-hidden relative"
+      style="background-image: url('img/testimonial-bg.jpg'); background-size: cover; background-position: center;"
     >
-      <div class="max-w-6xl mx-auto px-6 text-center">
+      <div class="absolute inset-0 bg-white/80"></div>
+      <div class="max-w-6xl mx-auto px-6 text-center relative z-10">
         <h3 class="text-5xl font-black mb-4">What Our Customers Say</h3>
         <p class="text-slate-500 mb-16">
           Swipe or wait — real reviews from real customers
@@ -1137,7 +1148,7 @@
     </section>
 
     <!-- Section: FAQ -->
-    <section id="faq" class="py-40 bg-gradient-to-b from-white to-slate-50">
+    <section id="faq" class="py-40 bg-gradient-to-b from-white to-slate-50" style="background-image: url('img/faq-bg.png'); background-size: cover; background-position: center;">
       <div class="max-w-4xl mx-auto px-6">
         <h3 class="text-5xl font-black text-center mb-20 tracking-tighter">
           Everything you need to know.
@@ -1246,7 +1257,9 @@
     </section>
 
     <!-- Section: Location (Premium Clean UI) -->
-    <section id="location" class="relative py-32 bg-slate-100 overflow-hidden">
+    <section id="location" class="relative py-32 bg-slate-100 overflow-hidden" style="background-image: url('img/location-bg.png'); background-size: cover; background-position: center;">
+      <!-- Background overlay -->
+      <div class="absolute inset-0 bg-white/85"></div>
       <!-- Background glow -->
       <div
         class="absolute -top-32 -left-32 w-[500px] h-[500px] bg-blue-400/20 blur-3xl rounded-full"
