@@ -1,349 +1,1498 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" class="scroll-smooth">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Bubbles Laundromat | Premium Fabric Care & Eco-Laundry OKC</title>
-    
+
     <!-- Meta & SEO -->
-    <meta name="description" content="Experience Oklahoma City’s most advanced laundromat. From specialized wash & fold to eco-friendly dry cleaning at 815 W Britton Rd.">
-    
+    <meta
+      name="description"
+      content="Experience Oklahoma City’s most advanced laundromat. From specialized wash & fold to eco-friendly dry cleaning at 815 W Britton Rd."
+    />
+
     <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#2563eb',
-                        secondary: '#0f172a',
-                        accent: '#60a5fa',
-                    },
-                    borderRadius: {
-                        '4xl': '2rem',
-                        '5xl': '3rem',
-                    }
-                }
-            }
-        }
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              primary: "#2563eb",
+              secondary: "#0f172a",
+              accent: "#60a5fa",
+            },
+            borderRadius: {
+              "4xl": "2rem",
+              "5xl": "3rem",
+            },
+          },
+        },
+      };
     </script>
 
     <!-- External Assets -->
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+      href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
 
     <style>
-        body { font-family: 'Plus Jakarta Sans', sans-serif; overflow-x: hidden; }
-        
-        /* Glassmorphism Navigation */
-        .glass-nav {
-            background: rgba(255, 255, 255, 0.7);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-        }
-        .nav-up { transform: translateY(-110%); }
+      body {
+        font-family: "Plus Jakarta Sans", sans-serif;
+        overflow-x: hidden;
+      }
 
-        /* Smooth Progress Bar */
-        #scroll-progress {
-            background: linear-gradient(to right, #60a5fa, #2563eb);
-            box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
-        }
+      /* Glassmorphism Navigation */
+      .glass-nav {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(25px) saturate(180%);
+        -webkit-backdrop-filter: blur(25px) saturate(180%);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+        transition: all 0.4s ease;
+      }
 
-        /* Smart Underline Animation */
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 50%;
-            background: #2563eb;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
-            transform: translateX(-50%);
-        }
-        .nav-link:hover::after, .nav-link.active::after { width: 100%; }
+      .nav-up {
+        transform: translateY(-110%);
+      }
 
-        /* Tilt & Glare Card */
-        .smart-card {
-            position: relative;
-            transition: transform 0.1s ease-out;
-            transform-style: preserve-3d;
-        }
-        .glare {
-            position: absolute;
-            inset: 0;
-            background: radial-gradient(circle at var(--x) var(--y), rgba(255,255,255,0.3) 0%, transparent 80%);
-            pointer-events: none;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-        .smart-card:hover .glare { opacity: 1; }
+      /* Smooth Progress Bar */
+      #scroll-progress {
+        background: linear-gradient(to right, #60a5fa, #2563eb);
+        box-shadow: 0 0 10px rgba(37, 99, 235, 0.5);
+      }
 
-        /* Custom Shapes */
-        .hero-clip { clip-path: ellipse(150% 100% at 50% 0%); }
+      /* Smart Underline Animation */
+      .nav-link::after {
+        content: "";
+        position: absolute;
+        width: 0;
+        height: 2px;
+        bottom: -4px;
+        left: 50%;
+        background: #2563eb;
+        transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+        transform: translateX(-50%);
+      }
+      .nav-link:hover::after,
+      .nav-link.active::after {
+        width: 100%;
+      }
+
+      /* Tilt & Glare Card */
+      .smart-card {
+        position: relative;
+        transition: all 0.4s ease;
+        transform-style: preserve-3d;
+      }
+
+      .smart-card:hover {
+        transform: translateY(-12px) scale(1.02);
+        box-shadow: 0 30px 60px rgba(0, 0, 0, 0.1);
+      }
+      .glare {
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          circle at var(--x) var(--y),
+          rgba(255, 255, 255, 0.3) 0%,
+          transparent 80%
+        );
+        pointer-events: none;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .smart-card:hover .glare {
+        opacity: 1;
+      }
+
+      /* Custom Shapes */
+      .hero-clip {
+        clip-path: ellipse(150% 100% at 50% 0%);
+      }
+
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        filter: blur(10px);
+        transition: all 0.8s ease;
+      }
+
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+        filter: blur(0);
+      }
+      .btn-mag {
+        position: relative;
+        overflow: hidden;
+      }
+
+      .btn-mag::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(
+          120deg,
+          transparent,
+          rgba(255, 255, 255, 0.4),
+          transparent
+        );
+        transform: translateX(-100%);
+        transition: 0.6s;
+      }
+      #testimonial-slider > div {
+        transition:
+          transform 0.6s ease,
+          opacity 0.6s ease;
+      }
+
+      #testimonial-slider > div:hover {
+        transform: scale(1.03);
+      }
     </style>
-</head>
-<body class="bg-[#f8fafc] text-slate-900">
-
-    <!-- SMART NAVIGATION -->
-    <nav id="navbar" class="fixed w-full z-[100] transition-all duration-500 glass-nav py-5">
-        <div id="scroll-progress" class="absolute bottom-0 left-0 h-[3px] transition-all duration-150" style="width: 0%"></div>
-        
-        <div class="max-w-7xl mx-auto px-6 flex justify-between items-center">
-            <a href="#home" class="flex items-center space-x-3 group">
-                <div class="bg-primary p-2.5 rounded-2xl shadow-lg shadow-blue-200 group-hover:rotate-[360deg] transition-transform duration-1000">
-                    <i class="fas fa-soap text-white text-xl"></i>
-                </div>
-                <div class="flex flex-col">
-                    <span class="text-2xl font-extrabold tracking-tighter leading-none">BUBBLES</span>
-                    <span class="text-[10px] font-bold tracking-[0.3em] text-primary">LAUNDROMAT</span>
-                </div>
-            </a>
-
-            <div class="hidden lg:flex items-center space-x-12 font-bold text-xs uppercase tracking-[0.2em] text-slate-500">
-                <a href="#services" class="nav-link relative hover:text-primary transition-colors">Services</a>
-                <a href="#pricing" class="nav-link relative hover:text-primary transition-colors">Pricing</a>
-                <a href="#about" class="nav-link relative hover:text-primary transition-colors">About</a>
-                <a href="#contact" class="nav-link relative hover:text-primary transition-colors">Contact</a>
-                <a href="tel:+14057488990" class="bg-secondary text-white px-8 py-4 rounded-2xl flex items-center hover:bg-primary hover:scale-105 transition-all shadow-xl shadow-slate-200">
-                    <i class="fas fa-phone-alt mr-3 text-accent"></i> (405) 748-8990
-                </a>
-            </div>
-
-            <button class="lg:hidden text-2xl text-slate-800" id="mobile-toggle"><i class="fas fa-bars-staggered"></i></button>
-        </div>
-    </nav>
-
-    <!-- MOBILE MENU -->
-    <div id="mobile-menu" class="fixed inset-0 bg-white z-[90] hidden flex flex-col items-center justify-center space-y-10 text-3xl font-black lg:hidden">
-        <a href="#services" class="mob-link">Services</a>
-        <a href="#pricing" class="mob-link">Pricing</a>
-        <a href="#about" class="mob-link">About</a>
-        <a href="tel:+14057488990" class="text-primary tracking-tighter">(405) 748-8990</a>
+  </head>
+  <body class="bg-[#f8fafc] text-slate-900">
+    <!-- Section: Navigation -->
+    <nav
+  id="navbar"
+  class="fixed top-4 left-1/2 -translate-x-1/2 z-[100] w-[92%] max-w-6xl h-20 flex items-center justify-between px-6 bg-white/95 backdrop-blur-md border border-slate-200 rounded-3xl shadow-lg transition-all duration-300"
+>
+  <!-- Logo -->
+  <a href="#home" class="flex items-center gap-3 group">
+    <div
+      class="bg-blue-600 p-2.5 rounded-2xl shadow-md group-hover:rotate-12 transition duration-500"
+    >
+      <i class="fas fa-soap text-white text-lg"></i>
     </div>
 
-    <!-- 1. ENRICHED HERO -->
-    <header id="home" class="relative h-[110vh] flex items-center justify-center overflow-hidden hero-clip">
-        <div class="absolute inset-0 z-0">
-            <video autoplay muted loop playsinline class="w-full h-full object-cover scale-110">
-                <source src="https://assets.mixkit.co/videos/preview/mixkit-washing-machine-at-the-laundry-shop-4531-large.mp4" type="video/mp4">
-            </video>
-            <div class="absolute inset-0 bg-gradient-to-b from-slate-900/80 via-slate-900/40 to-primary/20"></div>
+    <div class="leading-tight">
+      <div class="text-lg font-black tracking-tight text-slate-900">
+        BUBBLES
+      </div>
+      <div class="text-[10px] tracking-[0.3em] text-blue-500 font-bold">
+        LAUNDROMAT
+      </div>
+    </div>
+  </a>
+
+  <!-- Desktop Menu -->
+  <div
+    class="hidden lg:flex items-center gap-8 text-xs uppercase font-bold tracking-widest text-slate-700"
+  >
+    <a href="#home" class="hover:text-blue-600 transition">Home</a>
+    <a href="#services" class="hover:text-blue-600 transition">Services</a>
+    <a href="#pricing" class="hover:text-blue-600 transition">Pricing</a>
+    <a href="#about" class="hover:text-blue-600 transition">About</a>
+    <a href="#faq" class="hover:text-blue-600 transition">FAQ</a>
+    <a href="#contact" class="hover:text-blue-600 transition">Contact</a>
+
+    <!-- CTA -->
+    <a
+      href="tel:+14057488990"
+      class="px-5 py-2 rounded-xl font-bold border border-slate-200 hover:bg-blue-600 hover:text-white transition"
+    >
+      Call Now
+    </a>
+
+    <a
+      href="#location"
+      class="bg-blue-600 text-white px-5 py-2 rounded-xl hover:scale-105 transition shadow-md"
+    >
+      Find Us
+    </a>
+  </div>
+
+  <!-- Mobile Button -->
+  <button
+    id="mobile-toggle"
+    class="lg:hidden text-2xl text-slate-900"
+  >
+    <i class="fas fa-bars"></i>
+  </button>
+</nav>
+
+
+    <!-- Scroll Progress Bar -->
+    <div
+      id="scroll-progress"
+      class="fixed top-[88px] left-1/2 -translate-x-1/2 w-[92%] max-w-6xl h-[3px] bg-gradient-to-r from-blue-400 via-blue-500 to-blue-600 rounded-full z-[99]"
+      style="width: 0%"
+    ></div>
+
+    <!-- Section: Mobile Menu -->
+    <div
+      id="mobile-menu"
+      class="fixed inset-0 bg-white z-[90] hidden flex flex-col items-center justify-center space-y-8 text-2xl font-black lg:hidden"
+    >
+      <a href="#home" class="mob-link">Home</a>
+      <a href="#services" class="mob-link">Services</a>
+      <a href="#pricing" class="mob-link">Pricing</a>
+      <a href="#about" class="mob-link">About</a>
+      <a href="#faq" class="mob-link">FAQ</a>
+      <a href="#contact" class="mob-link">Contact</a>
+
+      <a href="tel:+14057488990" class="text-primary text-xl">
+        Call (405) 748-8990
+      </a>
+    </div>
+
+    <!-- Section: Hero -->
+    <header
+      id="home"
+      class="relative min-h-screen flex items-center justify-center overflow-hidden"
+    >
+      <!-- Background Image -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="img/bg.png"
+          alt="Hero Background"
+          class="w-full h-full object-cover scale-110 brightness-75 contrast-110"
+        />
+
+        <!-- Gradient Overlay -->
+        <div
+          class="absolute inset-0 bg-gradient-to-b from-slate-950/80 via-slate-900/60 to-blue-900/40"
+        ></div>
+      </div>
+
+      <!-- Floating Glow Effects -->
+      <div
+        class="absolute top-20 left-10 w-72 h-72 bg-blue-500/20 blur-3xl rounded-full animate-pulse"
+      ></div>
+      <div
+        class="absolute bottom-10 right-10 w-96 h-96 bg-white/10 blur-3xl rounded-full animate-pulse"
+      ></div>
+
+      <!-- Content -->
+      <div
+        class="relative z-10 text-center px-6 max-w-5xl"
+        data-aos="fade-up"
+        data-aos-duration="1200"
+      >
+        <!-- Badge -->
+        <div
+          class="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-xs font-bold tracking-widest uppercase mb-8 hover:scale-105 transition"
+        >
+          <span class="w-2 h-2 bg-blue-400 rounded-full animate-pulse"></span>
+          OKC’s #1 Fabric Care Service
         </div>
-        <div class="relative z-10 text-center px-6 max-w-5xl" data-aos="fade-up" data-aos-duration="1500">
-            <span class="inline-block px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-accent text-xs font-black tracking-widest uppercase mb-8">OKC's #1 Rated Fabric Care Specialists</span>
-            <h1 class="text-6xl md:text-9xl font-black text-white mb-8 leading-[0.9] tracking-tighter">
-                Fresh Clothes.<br><span class="text-accent italic font-light">Elevated Life.</span>
-            </h1>
-            <p class="text-xl md:text-2xl text-slate-200 max-w-2xl mx-auto mb-12 font-medium leading-relaxed opacity-90">
-                Stop spending weekends on laundry. Experience precision cleaning, eco-friendly detergents, and 24-hour delivery tailored for OKC.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-6">
-                <a href="tel:+14057488990" class="btn-mag group bg-primary text-white px-12 py-6 rounded-3xl text-xl font-bold shadow-2xl hover:bg-white hover:text-primary transition-all duration-500">
-                    Get Started Now
-                </a>
-                <a href="#location" class="btn-mag group bg-white/10 backdrop-blur-xl border border-white/20 text-white px-12 py-6 rounded-3xl text-xl font-bold hover:bg-white hover:text-slate-900 transition-all duration-500">
-                    Locate Us
-                </a>
-            </div>
+
+        <!-- Title -->
+        <h1
+          class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-[0.95] tracking-tight"
+        >
+          Fresh Clothes,<br />
+          <span
+            class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-white to-blue-300 italic"
+          >
+            Elevated Life
+          </span>
+        </h1>
+
+        <!-- Subtitle -->
+        <p
+          class="mt-8 text-lg md:text-2xl text-slate-200 max-w-2xl mx-auto leading-relaxed opacity-90"
+        >
+          Stop wasting weekends on laundry. Experience premium wash,
+          eco-friendly cleaning, and fast 24-hour delivery in Oklahoma City.
+        </p>
+
+        <!-- Buttons -->
+        <div class="mt-12 flex flex-col sm:flex-row justify-center gap-5">
+          <!-- Primary Button -->
+          <a
+            href="tel:+14057488990"
+            class="group relative bg-blue-600 text-white px-10 py-5 rounded-2xl font-bold shadow-lg overflow-hidden transition-all duration-300 hover:scale-105 hover:-translate-y-1"
+          >
+            <span class="relative z-10">Get Started Now</span>
+
+            <!-- Shine Effect -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent -translate-x-full group-hover:translate-x-full transition duration-700"
+            ></div>
+          </a>
+
+          <!-- Secondary Button -->
+          <a
+            href="#location"
+            class="group relative px-10 py-5 rounded-2xl font-bold text-white border border-white/20 backdrop-blur-md transition-all duration-300 hover:scale-105 hover:bg-white hover:text-slate-900 overflow-hidden"
+          >
+            <span class="relative z-10">Locate Us</span>
+
+            <span
+              class="absolute inset-0 scale-0 group-hover:scale-100 bg-white transition-transform duration-300 rounded-2xl"
+            ></span>
+          </a>
         </div>
+
+        <!-- Stats -->
+        <div
+          class="mt-16 grid grid-cols-3 gap-6 text-white/80 text-sm md:text-base"
+        >
+          <div class="hover:scale-110 transition">
+            <div class="text-2xl font-black text-blue-300">24h</div>
+            Fast Delivery
+          </div>
+
+          <div class="hover:scale-110 transition">
+            <div class="text-2xl font-black text-blue-300">99%</div>
+            Stain Removal
+          </div>
+
+          <div class="hover:scale-110 transition">
+            <div class="text-2xl font-black text-blue-300">Eco</div>
+            Friendly Clean
+          </div>
+        </div>
+      </div>
     </header>
 
-    <!-- 2. SMART TRUST STATS -->
-    <section class="py-20 bg-white relative z-20 -mt-32 mx-6 rounded-5xl shadow-2xl border border-slate-100 max-w-7xl lg:mx-auto">
-        <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 px-12">
-            <div class="text-center group" data-aos="zoom-in">
-                <div class="text-6xl font-black text-primary mb-3 counter" data-target="15">0</div>
-                <p class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors">Years of Excellence</p>
-            </div>
-            <div class="text-center group" data-aos="zoom-in" data-aos-delay="100">
-                <div class="text-6xl font-black text-primary mb-3 counter" data-target="8500">0</div>
-                <p class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors">Satisfied Clients</p>
-            </div>
-            <div class="text-center group" data-aos="zoom-in" data-aos-delay="200">
-                <div class="text-6xl font-black text-primary mb-3">HE</div>
-                <p class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors">Modern Machines</p>
-            </div>
-            <div class="text-center group" data-aos="zoom-in" data-aos-delay="300">
-                <div class="text-6xl font-black text-primary mb-3">24h</div>
-                <p class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors">Express Return</p>
-            </div>
+    <!-- Section: Trust Stats -->
+    <section
+      class="py-20 bg-white relative z-20 -mt-32 mx-6 rounded-5xl shadow-2xl border border-slate-100 max-w-7xl lg:mx-auto"
+    >
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-12 px-12">
+        <div class="text-center group" data-aos="zoom-in">
+          <div
+            class="text-6xl font-black text-primary mb-3 counter"
+            data-target="15"
+          >
+            0
+          </div>
+          <p
+            class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors"
+          >
+            Years of Excellence
+          </p>
         </div>
+        <div class="text-center group" data-aos="zoom-in" data-aos-delay="100">
+          <div
+            class="text-6xl font-black text-primary mb-3 counter"
+            data-target="8500"
+          >
+            0
+          </div>
+          <p
+            class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors"
+          >
+            Satisfied Clients
+          </p>
+        </div>
+        <div class="text-center group" data-aos="zoom-in" data-aos-delay="200">
+          <div class="text-6xl font-black text-primary mb-3">HE</div>
+          <p
+            class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors"
+          >
+            Modern Machines
+          </p>
+        </div>
+        <div class="text-center group" data-aos="zoom-in" data-aos-delay="300">
+          <div class="text-6xl font-black text-primary mb-3">24h</div>
+          <p
+            class="text-slate-400 text-[10px] uppercase font-black tracking-[0.2em] group-hover:text-primary transition-colors"
+          >
+            Express Return
+          </p>
+        </div>
+      </div>
     </section>
 
-    <!-- 3. ENRICHED SERVICES -->
+    <!-- Section: Services -->
     <section id="services" class="py-40 bg-[#f8fafc]">
-        <div class="max-w-7xl mx-auto px-6">
-            <div class="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8">
-                <div class="max-w-2xl">
-                    <h2 class="text-primary font-black tracking-[0.3em] text-xs uppercase mb-4">Our Expertise</h2>
-                    <h3 class="text-5xl md:text-7xl font-black text-slate-900 tracking-tight">The Bubbles Advantage.</h3>
-                </div>
-                <p class="text-slate-500 text-xl font-medium max-w-sm leading-relaxed">We don’t just wash; we sanitize, preserve, and rejuvenate your favorite garments.</p>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Wash & Fold -->
-                <div class="smart-card bg-white p-12 rounded-5xl shadow-sm border border-slate-100 hover:shadow-2xl transition-all" data-aos="fade-up">
-                    <div class="glare"></div>
-                    <div class="w-20 h-20 bg-blue-50 text-primary rounded-3xl flex items-center justify-center text-4xl mb-10 rotate-3">
-                        <i class="fas fa-tshirt"></i>
-                    </div>
-                    <h4 class="text-3xl font-extrabold mb-6">Wash & Fold</h4>
-                    <p class="text-slate-500 leading-relaxed mb-8 font-medium">The ultimate time-saver. We use ozone-enriched water to eliminate 99% of bacteria, leaving clothes softer and cleaner.</p>
-                    <ul class="space-y-3 text-sm font-bold text-slate-700">
-                        <li><i class="fas fa-check text-primary mr-2"></i> Professional Sorting</li>
-                        <li><i class="fas fa-check text-primary mr-2"></i> Custom Scent Options</li>
-                    </ul>
-                </div>
-                <!-- Dry Cleaning -->
-                <div class="smart-card bg-white p-12 rounded-5xl shadow-sm border border-slate-100 hover:shadow-2xl transition-all" data-aos="fade-up" data-aos-delay="200">
-                    <div class="glare"></div>
-                    <div class="w-20 h-20 bg-blue-50 text-primary rounded-3xl flex items-center justify-center text-4xl mb-10 -rotate-3">
-                        <i class="fas fa-wind"></i>
-                    </div>
-                    <h4 class="text-3xl font-extrabold mb-6">Dry Cleaning</h4>
-                    <p class="text-slate-500 leading-relaxed mb-8 font-medium">Eco-friendly solvents that are tough on stains but gentle on fibers. Ideal for suits, gowns, and specialized fabrics.</p>
-                    <ul class="space-y-3 text-sm font-bold text-slate-700">
-                        <li><i class="fas fa-check text-primary mr-2"></i> Stain Spotting Experts</li>
-                        <li><i class="fas fa-check text-primary mr-2"></i> Hand-Finished Pressing</li>
-                    </ul>
-                </div>
-                <!-- Self Service -->
-                <div class="smart-card bg-white p-12 rounded-5xl shadow-sm border border-slate-100 hover:shadow-2xl transition-all" data-aos="fade-up" data-aos-delay="400">
-                    <div class="glare"></div>
-                    <div class="w-20 h-20 bg-blue-50 text-primary rounded-3xl flex items-center justify-center text-4xl mb-10 rotate-6">
-                        <i class="fas fa-sync"></i>
-                    </div>
-                    <h4 class="text-3xl font-extrabold mb-6">Self-Service</h4>
-                    <p class="text-slate-500 leading-relaxed mb-8 font-medium">Experience the Speed Queen difference. Industrial-grade efficiency in a clean, safe, and air-conditioned environment.</p>
-                    <ul class="space-y-3 text-sm font-bold text-slate-700">
-                        <li><i class="fas fa-check text-primary mr-2"></i> Card & App Payments</li>
-                        <li><i class="fas fa-check text-primary mr-2"></i> Free High-Speed WiFi</li>
-                    </ul>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-6">
+        <div
+          class="flex flex-col lg:flex-row justify-between items-end mb-24 gap-8"
+        >
+          <div class="max-w-2xl">
+            <h2
+              class="text-primary font-black tracking-[0.3em] text-xs uppercase mb-4"
+            >
+              Our Expertise
+            </h2>
+            <h3
+              class="text-5xl md:text-7xl font-black text-slate-900 tracking-tight"
+            >
+              The Bubbles Advantage.
+            </h3>
+          </div>
+          <p
+            class="text-slate-500 text-xl font-medium max-w-sm leading-relaxed"
+          >
+            We don’t just wash; we sanitize, preserve, and rejuvenate your
+            favorite garments.
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <!-- Wash & Fold -->
+          <div
+            class="smart-card bg-white p-12 rounded-5xl shadow-sm border border-slate-100 hover:shadow-2xl transition-all"
+            data-aos="fade-up"
+          >
+            <div class="glare"></div>
+            <div
+              class="w-20 h-20 bg-blue-50 text-primary rounded-3xl flex items-center justify-center text-4xl mb-10 rotate-3"
+            >
+              <i class="fas fa-tshirt"></i>
+            </div>
+            <h4 class="text-3xl font-extrabold mb-6">Wash & Fold</h4>
+            <p class="text-slate-500 leading-relaxed mb-8 font-medium">
+              The ultimate time-saver. We use ozone-enriched water to eliminate
+              99% of bacteria, leaving clothes softer and cleaner.
+            </p>
+            <ul class="space-y-3 text-sm font-bold text-slate-700">
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i> Professional
+                Sorting
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i> Custom Scent
+                Options
+              </li>
+            </ul>
+          </div>
+          <!-- Dry Cleaning -->
+          <div
+            class="smart-card bg-white p-12 rounded-5xl shadow-sm border border-slate-100 hover:shadow-2xl transition-all"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="glare"></div>
+            <div
+              class="w-20 h-20 bg-blue-50 text-primary rounded-3xl flex items-center justify-center text-4xl mb-10 -rotate-3"
+            >
+              <i class="fas fa-wind"></i>
+            </div>
+            <h4 class="text-3xl font-extrabold mb-6">Dry Cleaning</h4>
+            <p class="text-slate-500 leading-relaxed mb-8 font-medium">
+              Eco-friendly solvents that are tough on stains but gentle on
+              fibers. Ideal for suits, gowns, and specialized fabrics.
+            </p>
+            <ul class="space-y-3 text-sm font-bold text-slate-700">
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i> Stain Spotting
+                Experts
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i> Hand-Finished
+                Pressing
+              </li>
+            </ul>
+          </div>
+          <!-- Self Service -->
+          <div
+            class="smart-card bg-white p-12 rounded-5xl shadow-sm border border-slate-100 hover:shadow-2xl transition-all"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="glare"></div>
+            <div
+              class="w-20 h-20 bg-blue-50 text-primary rounded-3xl flex items-center justify-center text-4xl mb-10 rotate-6"
+            >
+              <i class="fas fa-sync"></i>
+            </div>
+            <h4 class="text-3xl font-extrabold mb-6">Self-Service</h4>
+            <p class="text-slate-500 leading-relaxed mb-8 font-medium">
+              Experience the Speed Queen difference. Industrial-grade efficiency
+              in a clean, safe, and air-conditioned environment.
+            </p>
+            <ul class="space-y-3 text-sm font-bold text-slate-700">
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i> Card & App
+                Payments
+              </li>
+              <li>
+                <i class="fas fa-check text-primary mr-2"></i> Free High-Speed
+                WiFi
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section: How It Works -->
+    <section class="py-32 bg-white">
+      <div class="max-w-7xl mx-auto px-6 text-center">
+        <h3 class="text-5xl font-black mb-20">How It Works</h3>
+
+        <div class="grid md:grid-cols-4 gap-10">
+          <!-- Step 1 -->
+          <div
+            class="step-card group p-8 rounded-4xl bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2"
+          >
+            <div
+              class="w-14 h-14 flex items-center justify-center rounded-2xl bg-primary text-white font-black text-lg mb-6 shadow-lg group-hover:rotate-6 transition"
+            >
+              1
+            </div>
+            <h4
+              class="font-bold text-xl mb-2 group-hover:text-primary transition"
+            >
+              Drop Off
+            </h4>
+            <p class="text-slate-500 group-hover:text-slate-700 transition">
+              Bring your laundry to our store.
+            </p>
+          </div>
+
+          <!-- Step 2 -->
+          <div
+            class="step-card group p-8 rounded-4xl bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2"
+          >
+            <div
+              class="w-14 h-14 flex items-center justify-center rounded-2xl bg-primary text-white font-black text-lg mb-6 shadow-lg group-hover:rotate-6 transition"
+            >
+              2
+            </div>
+            <h4
+              class="font-bold text-xl mb-2 group-hover:text-primary transition"
+            >
+              Choose Service
+            </h4>
+            <p class="text-slate-500 group-hover:text-slate-700 transition">
+              Select wash & fold or dry cleaning.
+            </p>
+          </div>
+
+          <!-- Step 3 -->
+          <div
+            class="step-card group p-8 rounded-4xl bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2"
+          >
+            <div
+              class="w-14 h-14 flex items-center justify-center rounded-2xl bg-primary text-white font-black text-lg mb-6 shadow-lg group-hover:rotate-6 transition"
+            >
+              3
+            </div>
+            <h4
+              class="font-bold text-xl mb-2 group-hover:text-primary transition"
+            >
+              We Clean
+            </h4>
+            <p class="text-slate-500 group-hover:text-slate-700 transition">
+              We handle everything professionally.
+            </p>
+          </div>
+
+          <!-- Step 4 -->
+          <div
+            class="step-card group p-8 rounded-4xl bg-slate-50 hover:bg-white border border-slate-100 hover:shadow-2xl transition-all duration-500 cursor-pointer hover:-translate-y-2"
+          >
+            <div
+              class="w-14 h-14 flex items-center justify-center rounded-2xl bg-primary text-white font-black text-lg mb-6 shadow-lg group-hover:rotate-6 transition"
+            >
+              4
+            </div>
+            <h4
+              class="font-bold text-xl mb-2 group-hover:text-primary transition"
+            >
+              Pick Up
+            </h4>
+            <p class="text-slate-500 group-hover:text-slate-700 transition">
+              Collect fresh, clean clothes.
+            </p>
+          </div>
+        </div>
+      </div>
     </section>
 
     <!-- ... [Additional Sections 4-13 follow enriched pattern] ... -->
 
-    <!-- 6. SMART PRICING SECTION -->
+    <!-- Section: Pricing -->
     <section id="pricing" class="py-40 bg-slate-900 text-white overflow-hidden">
-        <div class="max-w-7xl mx-auto px-6 relative">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
-            <div class="text-center mb-24">
-                <h3 class="text-5xl md:text-7xl font-black mb-6">No Hidden Fees.</h3>
-                <p class="text-slate-400 text-xl font-light">Premium service at competitive, transparent OKC rates.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-                <!-- Tier 1 -->
-                <div class="p-1 rounded-5xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group" data-aos="fade-up">
-                    <div class="p-12 text-center">
-                        <h5 class="text-slate-400 font-black tracking-widest text-xs uppercase mb-6">Self-Service</h5>
-                        <div class="text-6xl font-black mb-8">$3.50<span class="text-sm font-normal text-slate-500">/load</span></div>
-                        <ul class="space-y-6 text-slate-400 text-sm mb-12">
-                            <li>Oversized Machines</li>
-                            <li>Detergent Vending</li>
-                            <li>Lounge Access</li>
-                        </ul>
-                        <button class="w-full py-5 rounded-2xl border-2 border-white/10 font-bold group-hover:bg-white group-hover:text-slate-900 transition-all">Check Availability</button>
-                    </div>
-                </div>
-                <!-- Tier 2 (Highlighted) -->
-                <div class="p-1 rounded-5xl bg-primary shadow-2xl shadow-primary/30 scale-105" data-aos="fade-up" data-aos-delay="200">
-                    <div class="p-12 text-center bg-primary rounded-[2.9rem]">
-                        <div class="bg-white/20 inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase mb-6">Most Preferred</div>
-                        <h5 class="text-white/80 font-black tracking-widest text-xs uppercase mb-6">Wash & Fold</h5>
-                        <div class="text-6xl font-black mb-8 text-white">$1.50<span class="text-sm font-normal text-white/60">/lb</span></div>
-                        <ul class="space-y-6 text-white/80 text-sm mb-12 font-medium">
-                            <li>24-Hour Return</li>
-                            <li>Premium Scent Profile</li>
-                            <li>Inventory Tracking</li>
-                        </ul>
-                        <button class="w-full py-5 rounded-2xl bg-white text-primary font-black shadow-xl hover:scale-105 transition-all">SCHEDULE PICKUP</button>
-                    </div>
-                </div>
-                <!-- Tier 3 -->
-                <div class="p-1 rounded-5xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group" data-aos="fade-up" data-aos-delay="400">
-                    <div class="p-12 text-center">
-                        <h5 class="text-slate-400 font-black tracking-widest text-xs uppercase mb-6">Dry Clean</h5>
-                        <div class="text-6xl font-black mb-8">$6.50<span class="text-sm font-normal text-slate-500">/item</span></div>
-                        <ul class="space-y-6 text-slate-400 text-sm mb-12">
-                            <li>Luxury Pressed</li>
-                            <li>Stain Protection</li>
-                            <li>Eco-Solvent Tech</li>
-                        </ul>
-                        <button class="w-full py-5 rounded-2xl border-2 border-white/10 font-bold group-hover:bg-white group-hover:text-slate-900 transition-all">Get Estimate</button>
-                    </div>
-                </div>
-            </div>
+      <div class="max-w-7xl mx-auto px-6 relative">
+        <div
+          class="absolute -top-24 -right-24 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"
+        ></div>
+        <div class="text-center mb-24">
+          <h3 class="text-5xl md:text-7xl font-black mb-6">No Hidden Fees.</h3>
+          <p class="text-slate-400 text-xl font-light">
+            Premium service at competitive, transparent OKC rates.
+          </p>
         </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <!-- Tier 1 -->
+          <div
+            class="p-1 rounded-5xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group"
+            data-aos="fade-up"
+          >
+            <div class="p-12 text-center">
+              <h5
+                class="text-slate-400 font-black tracking-widest text-xs uppercase mb-6"
+              >
+                Self-Service
+              </h5>
+              <div class="text-6xl font-black mb-8">
+                $3.50<span class="text-sm font-normal text-slate-500"
+                  >/load</span
+                >
+              </div>
+              <ul class="space-y-6 text-slate-400 text-sm mb-12">
+                <li>Oversized Machines</li>
+                <li>Detergent Vending</li>
+                <li>Lounge Access</li>
+              </ul>
+              <button
+                class="w-full py-5 rounded-2xl border-2 border-white/10 font-bold group-hover:bg-white group-hover:text-slate-900 transition-all"
+              >
+                Check Availability
+              </button>
+            </div>
+          </div>
+          <!-- Tier 2 (Highlighted) -->
+          <div
+            class="p-1 rounded-5xl bg-primary shadow-2xl shadow-primary/30 scale-105"
+            data-aos="fade-up"
+            data-aos-delay="200"
+          >
+            <div class="p-12 text-center bg-primary rounded-[2.9rem]">
+              <div
+                class="bg-white/20 inline-block px-4 py-1 rounded-full text-[10px] font-black uppercase mb-6"
+              >
+                Most Preferred
+              </div>
+              <h5
+                class="text-white/80 font-black tracking-widest text-xs uppercase mb-6"
+              >
+                Wash & Fold
+              </h5>
+              <div class="text-6xl font-black mb-8 text-white">
+                $1.50<span class="text-sm font-normal text-white/60">/lb</span>
+              </div>
+              <ul class="space-y-6 text-white/80 text-sm mb-12 font-medium">
+                <li>24-Hour Return</li>
+                <li>Premium Scent Profile</li>
+                <li>Inventory Tracking</li>
+              </ul>
+              <button
+                class="w-full py-5 rounded-2xl bg-white text-primary font-black shadow-xl hover:scale-105 transition-all"
+              >
+                SCHEDULE PICKUP
+              </button>
+            </div>
+          </div>
+          <!-- Tier 3 -->
+          <div
+            class="p-1 rounded-5xl bg-white/5 border border-white/10 hover:border-primary/50 transition-all group"
+            data-aos="fade-up"
+            data-aos-delay="400"
+          >
+            <div class="p-12 text-center">
+              <h5
+                class="text-slate-400 font-black tracking-widest text-xs uppercase mb-6"
+              >
+                Dry Clean
+              </h5>
+              <div class="text-6xl font-black mb-8">
+                $6.50<span class="text-sm font-normal text-slate-500"
+                  >/item</span
+                >
+              </div>
+              <ul class="space-y-6 text-slate-400 text-sm mb-12">
+                <li>Luxury Pressed</li>
+                <li>Stain Protection</li>
+                <li>Eco-Solvent Tech</li>
+              </ul>
+              <button
+                class="w-full py-5 rounded-2xl border-2 border-white/10 font-bold group-hover:bg-white group-hover:text-slate-900 transition-all"
+              >
+                Get Estimate
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section: About -->
+    <section id="about" class="py-40 bg-white relative overflow-hidden">
+      <div
+        class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center"
+      >
+        <!-- Left Content -->
+        <div data-aos="fade-right">
+          <h2
+            class="text-primary font-black tracking-[0.3em] text-xs uppercase mb-4"
+          >
+            About Us
+          </h2>
+
+          <h3 class="text-5xl md:text-7xl font-black leading-tight mb-8">
+            Clean Clothes.<br />
+            <span class="text-primary">Clean Lifestyle.</span>
+          </h3>
+
+          <p class="text-slate-500 text-lg leading-relaxed mb-10">
+            At Bubbles Laundromat, we combine modern technology with
+            eco-friendly cleaning methods to give your clothes the best care
+            possible. From self-service to premium wash & fold, we make laundry
+            effortless and fast.
+          </p>
+
+          <div class="flex gap-6">
+            <a
+              href="#services"
+              class="bg-primary text-white px-8 py-4 rounded-2xl font-bold hover:scale-105 transition"
+            >
+              Explore Services
+            </a>
+
+            <a
+              href="tel:+14057488990"
+              class="border border-primary text-primary px-8 py-4 rounded-2xl font-bold hover:bg-primary hover:text-white transition"
+            >
+              Call Now
+            </a>
+          </div>
+        </div>
+
+        <!-- Right Visual Card -->
+        <div class="relative" data-aos="fade-left">
+          <div class="grid grid-cols-2 gap-6">
+            <div
+              class="bg-blue-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">15+</h4>
+              <p class="text-slate-600 font-medium mt-2">Years Experience</p>
+            </div>
+
+            <div
+              class="bg-slate-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">24h</h4>
+              <p class="text-slate-600 font-medium mt-2">Fast Delivery</p>
+            </div>
+
+            <div
+              class="bg-slate-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">99%</h4>
+              <p class="text-slate-600 font-medium mt-2">Stain Removal</p>
+            </div>
+
+            <div
+              class="bg-blue-50 p-8 rounded-3xl hover:scale-105 transition duration-500"
+            >
+              <h4 class="text-4xl font-black text-primary">Eco</h4>
+              <p class="text-slate-600 font-medium mt-2">Friendly Process</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Section: Contact -->
+    <section id="contact" class="py-40 bg-[#f8fafc] relative overflow-hidden">
+      <div
+        class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center"
+      >
+        <!-- Left: Contact Info -->
+        <div data-aos="fade-right">
+          <h2
+            class="text-primary font-black tracking-[0.3em] text-xs uppercase mb-4"
+          >
+            Contact Us
+          </h2>
+
+          <h3 class="text-5xl md:text-7xl font-black leading-tight mb-8">
+            Let’s Talk Laundry
+          </h3>
+
+          <p class="text-slate-500 text-lg mb-10 leading-relaxed">
+            Have questions or need pickup service? Call us anytime or send a
+            message. We respond fast and are always ready to help.
+          </p>
+
+          <!-- Quick Info -->
+          <div class="space-y-6 mb-10">
+            <div class="flex items-start gap-4">
+              <i class="fas fa-phone text-primary text-xl mt-1"></i>
+              <div>
+                <h4 class="font-bold">Phone</h4>
+                <p class="text-slate-500">(405) 748-8990</p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <i class="fas fa-location-dot text-primary text-xl mt-1"></i>
+              <div>
+                <h4 class="font-bold">Address</h4>
+                <p class="text-slate-500">
+                  815 W Britton Rd, Oklahoma City, OK
+                </p>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-4">
+              <i class="fas fa-clock text-primary text-xl mt-1"></i>
+              <div>
+                <h4 class="font-bold">Open Hours</h4>
+                <p class="text-slate-500">Mon - Sun: 7:00 AM - 10:00 PM</p>
+              </div>
+            </div>
+          </div>
+
+          <a
+            href="tel:+14057488990"
+            class="bg-primary text-white px-10 py-5 rounded-3xl font-bold hover:scale-105 transition inline-block"
+          >
+            Call Now
+          </a>
+        </div>
+
+        <!-- Right: Contact Form -->
+        <div
+          class="bg-white p-10 rounded-5xl shadow-2xl border border-slate-100"
+          data-aos="fade-left"
+        >
+          <h4 class="text-2xl font-black mb-8">Send a Message</h4>
+
+          <form class="space-y-6">
+            <input
+              type="text"
+              placeholder="Your Name"
+              class="w-full p-4 rounded-2xl border border-slate-200 focus:outline-none focus:border-primary"
+            />
+
+            <input
+              type="email"
+              placeholder="Your Email"
+              class="w-full p-4 rounded-2xl border border-slate-200 focus:outline-none focus:border-primary"
+            />
+
+            <textarea
+              rows="5"
+              placeholder="Your Message"
+              class="w-full p-4 rounded-2xl border border-slate-200 focus:outline-none focus:border-primary"
+            ></textarea>
+
+            <button
+              type="submit"
+              class="w-full bg-primary text-white py-5 rounded-2xl font-bold hover:scale-105 transition"
+            >
+              Send Message
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Floating Decoration -->
+      <div
+        class="absolute -top-32 -right-32 w-96 h-96 bg-primary/10 blur-3xl rounded-full"
+      ></div>
     </section>
 
-    <!-- 10. SMART FAQ SECTION -->
-    <section id="faq" class="py-40 bg-white">
-        <div class="max-w-3xl mx-auto px-6">
-            <h3 class="text-5xl font-black text-center mb-20 tracking-tighter">Everything you need to know.</h3>
-            <div class="space-y-6" id="faq-wrapper">
-                <div class="faq-card bg-slate-50 rounded-4xl p-8 cursor-pointer group transition-all hover:bg-slate-100">
-                    <div class="flex justify-between items-center font-bold text-lg">
-                        <span class="tracking-tight">What makes your "Ozone Wash" different?</span>
-                        <div class="w-10 h-10 bg-white rounded-full flex items-center justify-center text-primary faq-trigger transition-transform">
-                            <i class="fas fa-plus"></i>
-                        </div>
-                    </div>
-                    <div class="faq-body overflow-hidden max-h-0 transition-all duration-500 text-slate-500 font-medium leading-relaxed">
-                        <p class="pt-6">Our ozone injection system kills 99.9% of bacteria and viruses while relaxing fabric fibers, meaning your clothes come out cleaner, softer, and smelling fresher without heavy chemical residue.</p>
-                    </div>
+    <!-- Section: Testimonials (3D Swipe Carousel) -->
+    <section
+      class="py-32 bg-gradient-to-b from-blue-50 to-white overflow-hidden"
+    >
+      <div class="max-w-6xl mx-auto px-6 text-center">
+        <h3 class="text-5xl font-black mb-4">What Our Customers Say</h3>
+        <p class="text-slate-500 mb-16">
+          Swipe or wait — real reviews from real customers
+        </p>
+
+        <!-- Carousel Container -->
+        <div id="testimonial-wrapper" class="relative [perspective:1200px]">
+          <!-- Slider -->
+          <div
+            id="testimonial-slider"
+            class="flex transition-transform duration-700 ease-out"
+          >
+            <!-- Card -->
+            <div class="min-w-full px-4">
+              <div
+                class="bg-white p-10 rounded-5xl shadow-2xl max-w-xl mx-auto transform transition hover:scale-[1.02]"
+              >
+                <div class="flex items-center justify-center mb-6">
+                  <img
+                    class="w-14 h-14 rounded-full border-2 border-blue-500"
+                    src="https://i.pravatar.cc/100?img=12"
+                  />
                 </div>
-                <!-- More FAQ items... -->
+
+                <div class="flex justify-center text-yellow-400 mb-4">
+                  ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="text-slate-600 text-lg mb-6">
+                  "Super clean and fast service. It feels premium every time I
+                  visit!"
+                </p>
+
+                <h4 class="font-bold">John D.</h4>
+              </div>
             </div>
+
+            <!-- Card 2 -->
+            <div class="min-w-full px-4">
+              <div
+                class="bg-white p-10 rounded-5xl shadow-2xl max-w-xl mx-auto"
+              >
+                <div class="flex items-center justify-center mb-6">
+                  <img
+                    class="w-14 h-14 rounded-full border-2 border-blue-500"
+                    src="https://i.pravatar.cc/100?img=32"
+                  />
+                </div>
+
+                <div class="flex justify-center text-yellow-400 mb-4">
+                  ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="text-slate-600 text-lg mb-6">
+                  "Best laundromat in OKC. Very modern system and super friendly
+                  staff."
+                </p>
+
+                <h4 class="font-bold">Sarah K.</h4>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="min-w-full px-4">
+              <div
+                class="bg-white p-10 rounded-5xl shadow-2xl max-w-xl mx-auto"
+              >
+                <div class="flex items-center justify-center mb-6">
+                  <img
+                    class="w-14 h-14 rounded-full border-2 border-blue-500"
+                    src="https://i.pravatar.cc/100?img=5"
+                  />
+                </div>
+
+                <div class="flex justify-center text-yellow-400 mb-4">
+                  ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="text-slate-600 text-lg mb-6">
+                  "Affordable, reliable, and very professional service every
+                  single time."
+                </p>
+
+                <h4 class="font-bold">Mike R.</h4>
+              </div>
+            </div>
+            <!-- Card -->
+            <div class="min-w-full px-4">
+              <div
+                class="bg-white p-10 rounded-5xl shadow-2xl max-w-xl mx-auto transform transition hover:scale-[1.02]"
+              >
+                <div class="flex items-center justify-center mb-6">
+                  <img
+                    class="w-14 h-14 rounded-full border-2 border-blue-500"
+                    src="https://i.pravatar.cc/100?img=12"
+                  />
+                </div>
+
+                <div class="flex justify-center text-yellow-400 mb-4">
+                  ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="text-slate-600 text-lg mb-6">
+                  "Super clean and fast service. It feels premium every time I
+                  visit!"
+                </p>
+
+                <h4 class="font-bold">John D.</h4>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="min-w-full px-4">
+              <div
+                class="bg-white p-10 rounded-5xl shadow-2xl max-w-xl mx-auto"
+              >
+                <div class="flex items-center justify-center mb-6">
+                  <img
+                    class="w-14 h-14 rounded-full border-2 border-blue-500"
+                    src="https://i.pravatar.cc/100?img=32"
+                  />
+                </div>
+
+                <div class="flex justify-center text-yellow-400 mb-4">
+                  ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="text-slate-600 text-lg mb-6">
+                  "Best laundromat in OKC. Very modern system and super friendly
+                  staff."
+                </p>
+
+                <h4 class="font-bold">Sarah K.</h4>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="min-w-full px-4">
+              <div
+                class="bg-white p-10 rounded-5xl shadow-2xl max-w-xl mx-auto"
+              >
+                <div class="flex items-center justify-center mb-6">
+                  <img
+                    class="w-14 h-14 rounded-full border-2 border-blue-500"
+                    src="https://i.pravatar.cc/100?img=5"
+                  />
+                </div>
+
+                <div class="flex justify-center text-yellow-400 mb-4">
+                  ⭐⭐⭐⭐⭐
+                </div>
+
+                <p class="text-slate-600 text-lg mb-6">
+                  "Affordable, reliable, and very professional service every
+                  single time."
+                </p>
+
+                <h4 class="font-bold">Mike R.</h4>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dots -->
+          <div class="flex justify-center mt-10 space-x-3">
+            <button class="dot w-3 h-3 rounded-full bg-blue-500"></button>
+            <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
+            <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
+            <button class="dot w-3 h-3 rounded-full bg-blue-500"></button>
+            <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
+            <button class="dot w-3 h-3 rounded-full bg-slate-300"></button>
+          </div>
         </div>
+      </div>
     </section>
 
-    <!-- 14. FOOTER -->
-    <footer class="bg-secondary text-white py-32">
-        <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-4 gap-20">
-            <div class="lg:col-span-2">
-                <div class="flex items-center space-x-3 mb-8">
-                    <div class="bg-primary p-2 rounded-xl"><i class="fas fa-soap text-white text-sm"></i></div>
-                    <span class="text-2xl font-black tracking-tighter">BUBBLES OKC</span>
-                </div>
-                <p class="text-slate-400 text-lg max-w-md leading-relaxed mb-10">Revolutionizing garment care through technology, sustainable practices, and an obsession with cleanliness. Visit us at 815 W Britton Rd.</p>
-                <div class="flex space-x-5">
-                    <a href="#" class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-primary transition-all hover:-translate-y-2"><i class="fab fa-instagram"></i></a>
-                    <a href="#" class="w-14 h-14 bg-white/5 rounded-2xl flex items-center justify-center hover:bg-primary transition-all hover:-translate-y-2"><i class="fab fa-facebook-f"></i></a>
-                </div>
-            </div>
-            <div>
-                <h5 class="font-black text-xs tracking-widest text-primary uppercase mb-8">Navigation</h5>
-                <ul class="space-y-5 text-slate-300 font-bold text-sm uppercase tracking-widest">
-                    <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
-                    <li><a href="#services" class="hover:text-white transition-colors">Services</a></li>
-                    <li><a href="#pricing" class="hover:text-white transition-colors">Pricing</a></li>
-                </ul>
-            </div>
-            <div>
-                <h5 class="font-black text-xs tracking-widest text-primary uppercase mb-8">Contact Hub</h5>
-                <p class="text-slate-300 font-bold text-sm leading-relaxed mb-4">815 W Britton Rd,<br>Oklahoma City, OK 73114</p>
-                <a href="tel:+14057488990" class="text-xl font-black text-white hover:text-accent transition-colors">+1 405-748-8990</a>
-            </div>
+    <!-- Section: Call to Action (Premium Animated) -->
+    <section
+      class="relative py-36 bg-gradient-to-br from-blue-600 via-primary to-slate-900 text-white overflow-hidden"
+    >
+      <!-- Floating Glow Blobs -->
+      <div
+        class="absolute top-0 left-0 w-96 h-96 bg-white/10 rounded-full blur-3xl animate-pulse"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-96 h-96 bg-blue-300/20 rounded-full blur-3xl animate-pulse"
+      ></div>
+
+      <div class="max-w-5xl mx-auto px-6 text-center relative z-10">
+        <!-- Badge -->
+        <div
+          class="inline-block mb-6 px-5 py-2 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs tracking-widest uppercase font-bold"
+        >
+          Limited Time Service Offer
         </div>
-        <div class="max-w-7xl mx-auto px-6 mt-32 pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center text-slate-500 text-[10px] font-black uppercase tracking-[0.4em] gap-6">
-            <span>&copy; 2024 Bubbles Laundromat OKC</span>
-            <div class="flex space-x-8">
-                <a href="#">Privacy</a>
-                <a href="#">Terms</a>
-            </div>
+
+        <!-- Title -->
+        <h3 class="text-4xl md:text-6xl font-black leading-tight mb-6">
+          Ready for <span class="text-blue-200">Fresh & Clean</span> Clothes?
+        </h3>
+
+        <!-- Subtitle -->
+        <p class="text-lg md:text-xl text-white/80 max-w-2xl mx-auto mb-12">
+          Skip laundry stress forever. Get professional washing, folding, and
+          delivery service in OKC with just one call.
+        </p>
+
+        <!-- Buttons -->
+        <div class="flex flex-col sm:flex-row justify-center gap-6">
+          <a
+            href="tel:+14057488990"
+            class="group relative bg-white text-primary px-10 py-5 rounded-3xl font-bold overflow-hidden transition transform hover:scale-105 shadow-xl"
+          >
+            <span class="relative z-10">Call Now</span>
+
+            <!-- hover shine -->
+            <div
+              class="absolute inset-0 bg-gradient-to-r from-transparent via-blue-200/50 to-transparent -translate-x-full group-hover:translate-x-full transition duration-700"
+            ></div>
+          </a>
+
+          <a
+            href="#location"
+            class="group relative border border-white/30 px-10 py-5 rounded-3xl font-bold backdrop-blur-md hover:bg-white hover:text-primary transition transform hover:scale-105"
+          >
+            <span class="relative z-10">Get Directions</span>
+          </a>
         </div>
+
+        <!-- Trust Row -->
+        <div
+          class="mt-16 flex flex-col md:flex-row justify-center gap-8 text-white/70 text-sm"
+        >
+          <div class="flex items-center gap-2 justify-center">
+            <span class="text-green-300">✔</span> 24h Fast Delivery
+          </div>
+
+          <div class="flex items-center gap-2 justify-center">
+            <span class="text-green-300">✔</span> Eco Friendly Cleaning
+          </div>
+
+          <div class="flex items-center gap-2 justify-center">
+            <span class="text-green-300">✔</span> 100% Safe Fabrics
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: FAQ -->
+    <section id="faq" class="py-40 bg-gradient-to-b from-white to-slate-50">
+      <div class="max-w-4xl mx-auto px-6">
+        <h3 class="text-5xl font-black text-center mb-20 tracking-tighter">
+          Everything you need to know.
+        </h3>
+
+        <div class="space-y-5" id="faq-wrapper">
+          <!-- ITEM 1 -->
+          <div
+            class="faq-card bg-white border border-slate-100 rounded-3xl p-6 cursor-pointer shadow-sm hover:shadow-lg transition"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-lg">
+                What makes your Ozone Wash different?
+              </h4>
+              <div
+                class="faq-trigger w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full transition"
+              >
+                <i class="fas fa-plus transition-transform duration-300"></i>
+              </div>
+            </div>
+
+            <div
+              class="faq-body max-h-0 overflow-hidden transition-all duration-500 text-slate-500 leading-relaxed"
+            >
+              <p class="pt-5">
+                Our ozone technology removes 99.9% bacteria while keeping fabric
+                soft, fresh, and chemical-free.
+              </p>
+            </div>
+          </div>
+
+          <!-- ITEM 2 -->
+          <div
+            class="faq-card bg-white border border-slate-100 rounded-3xl p-6 cursor-pointer shadow-sm hover:shadow-lg transition"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-lg">How fast is your service?</h4>
+              <div
+                class="faq-trigger w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full"
+              >
+                <i class="fas fa-plus transition-transform duration-300"></i>
+              </div>
+            </div>
+
+            <div
+              class="faq-body max-h-0 overflow-hidden transition-all duration-500 text-slate-500 leading-relaxed"
+            >
+              <p class="pt-5">
+                Standard turnaround is 24 hours. Express service available for
+                same-day delivery.
+              </p>
+            </div>
+          </div>
+
+          <!-- ITEM 3 -->
+          <div
+            class="faq-card bg-white border border-slate-100 rounded-3xl p-6 cursor-pointer shadow-sm hover:shadow-lg transition"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-lg">
+                Do you offer pickup and delivery?
+              </h4>
+              <div
+                class="faq-trigger w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full"
+              >
+                <i class="fas fa-plus transition-transform duration-300"></i>
+              </div>
+            </div>
+
+            <div
+              class="faq-body max-h-0 overflow-hidden transition-all duration-500 text-slate-500 leading-relaxed"
+            >
+              <p class="pt-5">
+                Yes, we provide fast pickup and delivery services across
+                Oklahoma City.
+              </p>
+            </div>
+          </div>
+
+          <!-- ITEM 4 -->
+          <div
+            class="faq-card bg-white border border-slate-100 rounded-3xl p-6 cursor-pointer shadow-sm hover:shadow-lg transition"
+          >
+            <div class="flex justify-between items-center">
+              <h4 class="font-bold text-lg">
+                What payment methods do you accept?
+              </h4>
+              <div
+                class="faq-trigger w-10 h-10 flex items-center justify-center bg-slate-100 rounded-full"
+              >
+                <i class="fas fa-plus transition-transform duration-300"></i>
+              </div>
+            </div>
+
+            <div
+              class="faq-body max-h-0 overflow-hidden transition-all duration-500 text-slate-500 leading-relaxed"
+            >
+              <p class="pt-5">
+                We accept cash, card, and all major digital payments including
+                contactless options.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Location (Premium Clean UI) -->
+    <section id="location" class="relative py-32 bg-slate-100 overflow-hidden">
+      <!-- Background glow -->
+      <div
+        class="absolute -top-32 -left-32 w-[500px] h-[500px] bg-blue-400/20 blur-3xl rounded-full"
+      ></div>
+      <div
+        class="absolute bottom-0 right-0 w-[500px] h-[500px] bg-white/30 blur-3xl rounded-full"
+      ></div>
+
+      <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <!-- Header -->
+        <div class="text-center mb-16">
+          <h2 class="text-5xl font-black mb-4">Visit Our Store</h2>
+          <p class="text-slate-500 text-lg">
+            Easy access, premium service, and fast laundry support in Oklahoma
+            City
+          </p>
+        </div>
+
+        <!-- Layout -->
+        <div class="grid lg:grid-cols-2 gap-12 items-center">
+          <!-- MAP CARD -->
+          <div
+            class="rounded-[2rem] overflow-hidden shadow-2xl hover:scale-[1.01] transition duration-500"
+          >
+            <iframe
+              class="w-full h-[500px]"
+              src="https://maps.google.com/maps?q=815%20W%20Britton%20Rd%20Oklahoma%20City&t=&z=14&ie=UTF8&iwloc=&output=embed"
+              loading="lazy"
+            ></iframe>
+          </div>
+
+          <!-- INFO CARD -->
+          <div
+            class="bg-white rounded-[2rem] shadow-xl p-10 hover:shadow-2xl transition"
+          >
+            <!-- Badge -->
+            <span
+              class="inline-block px-4 py-1 bg-blue-100 text-blue-600 text-xs font-bold rounded-full mb-6"
+            >
+              📍 Bubbles Laundromat OKC
+            </span>
+
+            <!-- Title -->
+            <h3 class="text-4xl font-black mb-4">815 W Britton Rd</h3>
+
+            <p class="text-slate-500 mb-8 leading-relaxed">
+              Premium laundry service with modern machines, eco cleaning, and
+              fast turnaround — right in the heart of Oklahoma City.
+            </p>
+
+            <!-- Distance Box -->
+            <div class="bg-slate-50 border rounded-2xl p-5 mb-8">
+              <div class="flex justify-between items-center mb-2">
+                <p class="font-bold text-sm">📍 Your Distance</p>
+                <span class="text-xs text-slate-400">Live</span>
+              </div>
+
+              <p id="distance-text" class="text-2xl font-black text-blue-600">
+                Detecting location...
+              </p>
+
+              <p class="text-xs text-slate-400 mt-1">Distance from store</p>
+            </div>
+
+            <!-- Info -->
+            <div class="grid grid-cols-3 gap-4 mb-8 text-center text-sm">
+              <div class="bg-slate-50 p-4 rounded-xl">
+                <i class="fas fa-clock text-blue-500 mb-2"></i>
+                <p class="font-bold">7AM - 10PM</p>
+              </div>
+
+              <div class="bg-slate-50 p-4 rounded-xl">
+                <i class="fas fa-car text-blue-500 mb-2"></i>
+                <p class="font-bold">Parking</p>
+              </div>
+
+              <div class="bg-slate-50 p-4 rounded-xl">
+                <i class="fas fa-shield-alt text-blue-500 mb-2"></i>
+                <p class="font-bold">Safe</p>
+              </div>
+            </div>
+
+            <!-- Buttons -->
+            <div class="flex gap-4">
+              <a
+                href="https://www.google.com/maps/dir/?api=1&destination=815+W+Britton+Rd+Oklahoma+City"
+                target="_blank"
+                class="flex-1 bg-blue-600 text-white py-4 rounded-xl font-bold text-center hover:bg-blue-700 transition"
+              >
+                Open Maps
+              </a>
+
+              <a
+                href="tel:+14057488990"
+                class="flex-1 border border-slate-300 py-4 rounded-xl font-bold text-center hover:bg-slate-100 transition"
+              >
+                Call Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: Footer -->
+    <footer class="bg-slate-950 text-white relative overflow-hidden py-28">
+      <!-- Glow Background -->
+      <div
+        class="absolute -top-40 -right-40 w-[500px] h-[500px] bg-primary/20 blur-[150px] rounded-full"
+      ></div>
+
+      <div
+        class="max-w-7xl mx-auto px-6 grid lg:grid-cols-4 gap-16 relative z-10"
+      >
+        <!-- Brand -->
+        <div class="lg:col-span-2">
+          <div class="flex items-center space-x-3 mb-6">
+            <div class="bg-primary p-3 rounded-2xl shadow-lg">
+              <i class="fas fa-soap text-white"></i>
+            </div>
+            <span class="text-3xl font-black tracking-tighter"
+              >BUBBLES OKC</span
+            >
+          </div>
+
+          <p class="text-slate-400 leading-relaxed max-w-md mb-8">
+            Revolutionizing laundry care with modern technology, eco-friendly
+            cleaning, and fast turnaround service in Oklahoma City.
+          </p>
+
+          <!-- Social -->
+          <div class="flex gap-4">
+            <a
+              href="#"
+              class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-primary transition hover:-translate-y-1"
+            >
+              <i class="fab fa-facebook-f"></i>
+            </a>
+            <a
+              href="#"
+              class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-primary transition hover:-translate-y-1"
+            >
+              <i class="fab fa-instagram"></i>
+            </a>
+            <a
+              href="#"
+              class="w-12 h-12 flex items-center justify-center rounded-2xl bg-white/5 hover:bg-primary transition hover:-translate-y-1"
+            >
+              <i class="fab fa-twitter"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation -->
+        <div>
+          <h5
+            class="text-xs tracking-[0.3em] uppercase text-primary mb-6 font-black"
+          >
+            Navigation
+          </h5>
+
+          <ul class="space-y-4 text-slate-400 font-semibold">
+            <li>
+              <a href="#home" class="hover:text-white transition">Home</a>
+            </li>
+            <li>
+              <a href="#services" class="hover:text-white transition"
+                >Services</a
+              >
+            </li>
+            <li>
+              <a href="#pricing" class="hover:text-white transition">Pricing</a>
+            </li>
+            <li>
+              <a href="#contact" class="hover:text-white transition">Contact</a>
+            </li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div>
+          <h5
+            class="text-xs tracking-[0.3em] uppercase text-primary mb-6 font-black"
+          >
+            Contact
+          </h5>
+
+          <div class="space-y-4 text-slate-400">
+            <p>815 W Britton Rd, OKC</p>
+
+            <a
+              href="tel:+14057488990"
+              class="text-xl font-black text-white hover:text-accent transition block"
+            >
+              +1 405-748-8990
+            </a>
+
+            <p class="text-sm">Open: 7:00 AM - 10:00 PM</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Bar -->
+      <div
+        class="max-w-7xl mx-auto px-6 mt-20 pt-8 border-t border-white/10 flex flex-col md:flex-row justify-between items-center text-slate-500 text-xs font-bold tracking-widest gap-6"
+      >
+        <span>© 2026 Bubbles Laundromat OKC</span>
+
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-white transition">Privacy</a>
+          <a href="#" class="hover:text-white transition">Terms</a>
+        </div>
+      </div>
     </footer>
 
     <!-- Scripts -->
+    <script>
+      const navbar = document.getElementById("navbar");
+
+      window.addEventListener("scroll", () => {
+        if (window.scrollY > 50) {
+          // Solid mode for readability on white sections
+          navbar.classList.add("bg-white", "text-slate-900", "shadow-2xl");
+          navbar.classList.remove("bg-white/10", "backdrop-blur-xl");
+        } else {
+          // Glass mode for hero section
+          navbar.classList.remove("bg-white", "text-slate-900", "shadow-2xl");
+          navbar.classList.add("bg-white/10", "backdrop-blur-xl");
+        }
+      });
+
+      // Scroll progress bar
+      const progress = document.getElementById("scroll-progress");
+
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.scrollY;
+        const docHeight =
+          document.documentElement.scrollHeight - window.innerHeight;
+        const scrolled = (scrollTop / docHeight) * 100;
+
+        progress.style.width = scrolled + "%";
+      });
+    </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script src="script.js"></script>
-</body>
+  </body>
 </html>
