@@ -339,3 +339,48 @@ document.addEventListener("DOMContentLoaded", () => {
 
   setInterval(createBubble, 300);
 });
+
+function handleSubmit(e) {
+  e.preventDefault();
+  const btn = document.getElementById("submit-btn");
+  const btnText = document.getElementById("btn-text");
+  const btnIcon = document.getElementById("btn-icon");
+
+  // Loading state
+  btn.disabled = true;
+  btnText.textContent = "Sending...";
+  btnIcon.className = "fas fa-circle-notch fa-spin text-sm";
+
+  setTimeout(() => {
+    document.getElementById("contact-form").style.display = "none";
+    const success = document.getElementById("form-success");
+    success.style.display = "block";
+    success.style.animation =
+      "successPop 0.5s cubic-bezier(.34,1.56,.64,1) forwards";
+  }, 1400);
+}
+
+const navbar = document.getElementById("navbar");
+
+window.addEventListener("scroll", () => {
+  if (window.scrollY > 50) {
+    // Solid mode for readability on white sections
+    navbar.classList.add("bg-white", "text-slate-900", "shadow-2xl");
+    navbar.classList.remove("bg-white/10", "backdrop-blur-xl");
+  } else {
+    // Glass mode for hero section
+    navbar.classList.remove("bg-white", "text-slate-900", "shadow-2xl");
+    navbar.classList.add("bg-white/10", "backdrop-blur-xl");
+  }
+});
+
+const progress = document.getElementById("scroll-progress");
+
+window.addEventListener("scroll", () => {
+  const scrollTop = window.scrollY;
+  const docHeight =
+    document.documentElement.scrollHeight - window.innerHeight;
+  const scrolled = (scrollTop / docHeight) * 100;
+
+  progress.style.width = scrolled + "%";
+});
