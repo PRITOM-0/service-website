@@ -198,21 +198,17 @@ document.addEventListener("DOMContentLoaded", () => {
       mobileBtn.innerHTML = '<i class="fas fa-bars-staggered"></i>';
     });
   });
-  // 8. Testimonials Slider
-  // =============================
-  // TESTIMONIAL 3D CAROUSEL PRO
-  // =============================
+
+  // SIMPLE AUTO TESTIMONIAL SLIDER
 
   const slider = document.getElementById("testimonial-slider");
   const dots = document.querySelectorAll(".dot");
 
   let index = 0;
-  const totalSlides = Math.floor(slider.children.length / 2);
-  let interval;
+  const totalSlides = slider.children.length;
 
-  // Move Slide
   function goToSlide(i) {
-    index = i;
+    index = (i + totalSlides) % totalSlides; // loop safe
     slider.style.transform = `translateX(-${index * 100}%)`;
 
     dots.forEach((dot, idx) => {
@@ -221,51 +217,18 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // Auto Play
-  function startAuto() {
-    interval = setInterval(() => {
-      index = (index + 1) % totalSlides;
-      goToSlide(index);
-    }, 2000);
-  }
+  // auto slide
+  setInterval(() => {
+    goToSlide(index + 1);
+  }, 3000);
 
-  function stopAuto() {
-    clearInterval(interval);
-  }
-
-  // Dots click
+  // dot click
   dots.forEach((dot, i) => {
     dot.addEventListener("click", () => goToSlide(i));
   });
 
-  // Pause on hover (IMPORTANT UX)
-  const wrapper = document.getElementById("testimonial-wrapper");
-
-  wrapper.addEventListener("mouseenter", stopAuto);
-  wrapper.addEventListener("mouseleave", startAuto);
-
-  // Touch swipe (mobile like Instagram)
-  let startX = 0;
-
-  wrapper.addEventListener("touchstart", (e) => {
-    startX = e.touches[0].clientX;
-  });
-
-  wrapper.addEventListener("touchend", (e) => {
-    let endX = e.changedTouches[0].clientX;
-
-    if (startX - endX > 50) {
-      index = (index + 1) % totalSlides;
-    } else if (endX - startX > 50) {
-      index = (index - 1 + totalSlides) % totalSlides;
-    }
-
-    goToSlide(index);
-  });
-
   // init
   goToSlide(0);
-  startAuto();
 
   // How It Works - scroll reveal (Tailwind only)
   const stepCards = document.querySelectorAll(".step-card");
@@ -347,34 +310,32 @@ document.addEventListener("DOMContentLoaded", () => {
       "Geolocation not supported";
   }
 
-// 
-// =========================
-// BUBBLE BACKGROUND SYSTEM
-// =========================
+  //
+  // =========================
+  // BUBBLE BACKGROUND SYSTEM
+  // =========================
 
-const bubbleContainer = document.querySelector(".bubble-container");
+  const bubbleContainer = document.querySelector(".bubble-container");
 
-function createBubble() {
-  const bubble = document.createElement("span");
-  bubble.classList.add("bubble");
+  function createBubble() {
+    const bubble = document.createElement("span");
+    bubble.classList.add("bubble");
 
-  const size = Math.random() * 60 + 20;
-  bubble.style.width = size + "px";
-  bubble.style.height = size + "px";
+    const size = Math.random() * 60 + 20;
+    bubble.style.width = size + "px";
+    bubble.style.height = size + "px";
 
-  bubble.style.left = Math.random() * 100 + "vw";
+    bubble.style.left = Math.random() * 100 + "vw";
 
-  bubble.style.animationDuration = Math.random() * 10 + 8 + "s";
-  bubble.style.animationDelay = Math.random() * 5 + "s";
+    bubble.style.animationDuration = Math.random() * 10 + 8 + "s";
+    bubble.style.animationDelay = Math.random() * 5 + "s";
 
-  bubbleContainer.appendChild(bubble);
+    bubbleContainer.appendChild(bubble);
 
-  setTimeout(() => {
-    bubble.remove();
-  }, 20000);
-}
+    setTimeout(() => {
+      bubble.remove();
+    }, 20000);
+  }
 
-setInterval(createBubble, 300);
-
-  
+  setInterval(createBubble, 300);
 });
