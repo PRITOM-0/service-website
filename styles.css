@@ -444,3 +444,131 @@ body {
     transform: scale(1);
   }
 }
+ #cta-bg-grad {
+      background: linear-gradient(135deg, #1d4ed8 0%, #1e40af 30%, #0f172a 65%, #1e3a5f 100%);
+      background-size: 300% 300%;
+      animation: gradShift 8s ease infinite;
+    }
+    @keyframes gradShift {
+      0%   { background-position: 0% 50%; }
+      50%  { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating grid lines */
+    #cta-grid {
+      background-image:
+        linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+      background-size: 60px 60px;
+    }
+
+    /* Badge shimmer */
+    .cta-badge-shimmer {
+      background: linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+      background-size: 200% auto;
+      animation: badgeShimmer 3s linear infinite;
+    }
+    @keyframes badgeShimmer {
+      0%   { background-position: -200% center; }
+      100% { background-position:  200% center; }
+    }
+
+    /* Heading gradient text */
+    .cta-gradient-text {
+      background: linear-gradient(135deg, #93c5fd 0%, #ffffff 40%, #bfdbfe 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Primary CTA button */
+    .cta-btn-primary {
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1), box-shadow 0.35s ease;
+    }
+    .cta-btn-primary:hover {
+      transform: translateY(-4px) scale(1.04);
+      box-shadow: 0 24px 48px -8px rgba(255,255,255,0.25);
+    }
+    .cta-btn-primary:active { transform: scale(0.97); }
+    .cta-shine {
+      transition: transform 0.65s ease;
+      transform: translateX(-100%);
+    }
+    .cta-btn-primary:hover .cta-shine { transform: translateX(100%); }
+
+    /* Secondary CTA button */
+    .cta-btn-secondary {
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1),
+                  background 0.3s ease,
+                  border-color 0.3s ease,
+                  color 0.3s ease,
+                  box-shadow 0.3s ease;
+    }
+    .cta-btn-secondary:hover {
+      transform: translateY(-4px) scale(1.04);
+      background: rgba(255,255,255,0.12);
+      border-color: rgba(255,255,255,0.6);
+      box-shadow: 0 16px 40px -8px rgba(0,0,0,0.3);
+    }
+    .cta-btn-secondary:active { transform: scale(0.97); }
+
+    /* Trust pill */
+    .trust-pill {
+      transition: transform 0.3s cubic-bezier(.34,1.56,.64,1),
+                  background 0.3s ease,
+                  border-color 0.3s ease;
+    }
+    .trust-pill:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.25);
+    }
+
+    /* Counter number */
+    .cta-stat-num {
+      background: linear-gradient(135deg, #93c5fd, #ffffff);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Stat card */
+    .cta-stat {
+      transition: transform 0.35s cubic-bezier(.34,1.56,.64,1),
+                  background 0.3s ease,
+                  border-color 0.3s ease;
+    }
+    .cta-stat:hover {
+      transform: translateY(-6px);
+      background: rgba(255,255,255,0.1);
+      border-color: rgba(255,255,255,0.2);
+    }
+
+    /* Blob float */
+    @keyframes blobFloat {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      33%       { transform: translate(20px, -20px) scale(1.05); }
+      66%       { transform: translate(-15px, 15px) scale(0.96); }
+    }
+    .blob-1 { animation: blobFloat 10s ease-in-out infinite; }
+    .blob-2 { animation: blobFloat 13s ease-in-out infinite reverse; }
+    .blob-3 { animation: blobFloat 8s  ease-in-out infinite 2s; }
+
+    /* Ring pulse */
+    @keyframes ringPulse {
+      0%   { transform: scale(0.9); opacity: 0.5; }
+      100% { transform: scale(1.6); opacity: 0; }
+    }
+    .ring-pulse { animation: ringPulse 2.5s ease-out infinite; }
+    .ring-pulse-2 { animation: ringPulse 2.5s ease-out infinite 0.8s; }
+
+    /* Phone icon wiggle */
+    @keyframes wiggle {
+      0%, 100% { transform: rotate(0deg); }
+      20%       { transform: rotate(-12deg); }
+      40%       { transform: rotate(10deg); }
+      60%       { transform: rotate(-6deg); }
+      80%       { transform: rotate(4deg); }
+    }
+    .phone-wiggle:hover { animation: wiggle 0.5s ease; }
